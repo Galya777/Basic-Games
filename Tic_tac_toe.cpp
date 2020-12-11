@@ -223,8 +223,9 @@ int main()
             cin >> square;
             Add(N, square,1);
             counter++;
+		printBoard(board, N, N);
             SwitchMe(1);
-            printBoard(board, N, N);
+            
             if (counter == N*N) {
                 cout << "It is a draw.";
                 break;
@@ -244,8 +245,8 @@ int main()
             }
             Add(N, square,2);
             counter++;
+		printBoard(board, N, N);
             SwitchMe(2);
-            printBoard(board, N, N);
         }if (checkForEnd(board, N) == true) {
             printResult(counter, way);
             break;
@@ -259,8 +260,8 @@ int main()
             square = rand() % N * N;
             Add(N, square,3);
             counter++;
+		printBoard(board, N, N);
             SwitchMe(3);
-            printBoard(board, N, N);
         }if (checkForEnd(board, N) == true) {
             printResult(counter, way);
             break;
