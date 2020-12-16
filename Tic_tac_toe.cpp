@@ -241,7 +241,7 @@ int main()
             if (gamer == 'X') {
                 cin >> square;
             }   else {
-                square = rand() % N * N;
+                square = rand() % N*N;
             }
             Add(N, square,2);
             counter++;
