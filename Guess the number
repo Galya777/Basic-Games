@@ -1,0 +1,24 @@
+#include <iostream>
+#include <time.h>
+using namespace std;
+int main()
+{
+	int number;
+	srand(time(0));
+	number = time(0) % 100;
+	int money = 0;
+	int num;
+	do {
+		cin >> num;
+		if (number > num) {
+			cout << "X is bigger!"<<endl;
+			money++;
+		}
+		else if (number < num) {
+			cout << "X is smaller!"<<endl;
+			money++;
+		}
+	}while (number != num);
+	cout << money;
+	return 0;
+}
