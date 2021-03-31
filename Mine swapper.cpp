@@ -76,6 +76,7 @@ void draw(int bombs, int Lines, int Colons) {
     }
 }
 void print(int Lines, int Colons) {
+ system("cls");
     for (int i = 0; i < Lines; ++i) {
         for (int j = 0; j < Colons; ++j) {
             cout << userboard[i][j];
@@ -157,7 +158,7 @@ int main()
     cin >> bombs;
     start(bombs,Lines,Colons);
     while (!finished) {
-        if (finish(bombs, Lines, Colons) == true && finished == false) {
+        if (finish(bombs, Lines, Colons) == true) {
             break;
         }
         print(Lines, Colons);
