@@ -33,7 +33,7 @@ int compute_score(string word)
     int value;
     for (int i = 0; i < strlen(word);++i) {
         if (isupper(word[i]) || islower(word[i])) {
-            value = (upper(word[i])-lower(word[i]) - 6)%26;
+            value = (upper(word[i])-'a' - 6)%26;
         }  else{
         value=26;
         }
