@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <time.h>
-#include <SFML/Graphics.hpp>
 using namespace std;
 const int MAX_BOARD = 60;
 void generateArray(bool array[][60], unsigned size, unsigned cols, int max)
