@@ -1,0 +1,134 @@
+﻿#include <iostream>
+#include <time.h>
+#include <SFML/Graphics.hpp>
+using namespace std;
+const int MAX_BOARD = 60;
+void generateArray(bool array[][60], unsigned size, unsigned cols, int max)
+{
+    static bool inited;
+    if (!inited) {
+        inited = true;
+        srand(time(0));
+    }
+
+    for (unsigned i = 1; i <= size; ++i) {
+        for (int j = 1; j <= size; ++j) {
+            array[i][j]= rand() % max * (rand() % 2 ? 1 : -1);
+        }
+    }
+}
+int aliveNeighbous(bool board[][MAX_BOARD], int rows, int cols) {
+    int alive = 0;
+    for (int i = 1; i <= rows; ++i) {
+        for (int j = 1; j <= cols; ++j) {
+            if (board[i][j] == true) {
+                if (board[i + 1][j] == true) {
+                    alive++;
+                } if (board[i][j - 1] == true) {
+                    alive++;
+                }
+                if (board[i - 1][j] == true) {
+                    alive++;
+                }
+                if (board[i][j + 1] == true) {
+                    alive++;
+                }
+                if (board[i + 1][j - 1] == true) {
+                    alive++;
+                }
+                if (board[i + 1][j + 1] == true) {
+                    alive++;
+                }
+                if (board[i - 1][j - 1] == true) {
+                    alive++;
+                }
+                if (board[i - 1][j + 1] == true) {
+                    alive++;
+                }
+            }
+        }
+    }
+    return alive;
+}
+void generateEpoch(bool matrix[][MAX_BOARD], bool secondMatrix[][MAX_BOARD], int rows,int cols) {
+    for (int i = 1; i <= rows; ++i) {
+        for (int j = 1; j <= cols; ++j) {
+            if (matrix[i][j] == true) {
+               int alive = aliveNeighbous(matrix, rows, cols);
+                if (alive < 2) {
+                    secondMatrix[i][j] = false;
+                }
+                else if (alive == 2) {
+                    secondMatrix[i][j] = matrix[i][j];
+                }
+                else if (alive <= 3) {
+                    secondMatrix[i][j] = true;
+                }
+                else {
+                    srand(time(0));
+                    int live = rand();
+                    if (live%2 == 0) {
+                       secondMatrix[i][j] = false;
+                    }
+                    else {
+                        secondMatrix[i][j] = true;
+                    }
+                }
+
+            }
+        }
+    }
+}
+int main()
+{
+    srand(time(0));
+    bool board[MAX_BOARD][MAX_BOARD];
+    bool secondBoard[MAX_BOARD][MAX_BOARD];
+    int rows, cols;
+    int alive,dead, epoch;
+    cout << "Enter the size of your board: ";
+    cin >> rows >> cols;
+    while (rows < 10 || rows>60 || cols < 10 || cols>60) {
+        cout << "Invalid size! Try again:: ";
+        cin >> rows >> cols;
+    }
+    generateArray(board, rows, cols, MAX_BOARD);
+    for (int i = 1; i <= rows; ++i) {
+        for (int j = 1; j <= cols; ++j) {
+            cout << board[i][j];
+        }
+        cout << endl;
+    }
+    cout << endl;
+    int allCells = rows * cols;
+    alive = aliveNeighbous(board, rows, cols);
+    dead = allCells - alive;
+    cin >> epoch;
+    for (int i = 0; i < epoch; ++i) {
+        if (i % 2 == 0) {          
+            generateEpoch(board, secondBoard, rows, cols);
+            system("cls");
+            for (int i = 1; i <= rows; ++i) {
+                for (int j = 1; j <= cols; ++j) {
+                    cout<<board[i][j];
+                }
+                cout << endl;
+            }
+            cout << endl;          
+        }
+        else {           
+            generateEpoch(secondBoard, board, rows, cols);
+            system("cls");
+            for (int i = 1; i <= rows; ++i) {
+                for (int j = 1; j <= cols; ++j) {
+                   cout<< secondBoard[i][j];
+                }
+                cout << endl;
+            }
+            cout << endl;
+           
+        }
+    }
+    return 0;
+}
+
