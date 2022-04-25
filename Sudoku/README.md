@@ -7,3 +7,6 @@ b) The RMI server (JavaFX application)
 • Serves each client by generating and passing to the client a Sudoku puzzle of the selected level of difficulty
 • Presents a solution to the given puzzle at the end of the game, if it is terminated without success by the players.
 • Records statistics in a file about the client username, the level of difficulty and the outcome of the game (total time played and game solved/ unsolved result).
+
+To do:
+1. Improve
