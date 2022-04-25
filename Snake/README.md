@@ -8,3 +8,4 @@ To do:
 7. player vs computer
 8. design improvements
 9. whatever comes to my mind
+10. Dokumentation
