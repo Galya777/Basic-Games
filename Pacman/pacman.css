@@ -1,0 +1,22 @@
+#gameCanvas{
+    box-shadow: 10px 10px 50px blue;
+ 
+}
+h1{
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgb(221, 14, 221);
+
+}
+body{
+    display:flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(
+        0deg,
+        rgb(58, 47, 101) 90%,
+        rgb(35, 69, 200) 100%
+    );
+
+}
